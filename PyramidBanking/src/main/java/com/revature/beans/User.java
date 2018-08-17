@@ -16,6 +16,7 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private Account pyramidAccount;
+	private int age;
 	boolean loggedIn;
 
 	public User() {
@@ -65,8 +66,16 @@ public class User implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public int getAge() {
+		return age;
+	}
 
-	public Account getBankAccount() {
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Account getPyramidAccount() {
 		return pyramidAccount;
 	}
 
@@ -139,5 +148,7 @@ public class User implements Serializable {
 		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", pyramidAccount=" + pyramidAccount + ", loggedIn=" + loggedIn + "]";
 	}
+
+
 
 }

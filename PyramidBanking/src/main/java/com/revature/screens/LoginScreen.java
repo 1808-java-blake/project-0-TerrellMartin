@@ -14,56 +14,7 @@ import com.revature.beans.User;
 
 
 public class LoginScreen implements Screen {
-//	private Scanner scan = new Scanner(System.in);
-//	private UserDao ud = UserDao.currentUserDao;
 
-		//number of rows for pyramid
-//		int r = 5;
-//		int spaces = r*2 - 2;
-//		for(int i = 0; i < r; i++){
-//			
-//			for(int j = 0; j < spaces; j++){
-//				System.out.print(" ");
-//			}
-//			
-//			spaces = spaces - 1;
-//			for (int j = 0; j <= i; j++){
-//				System.out.print("$ ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println("Welcome to Pyramid Banking.");
-//		System.out.println("Type one of the following LoginScreen Commands: ");
-//		System.out.println("Register         Login           Exit");
-//		String s = scan.nextLine();
-//		if ("register".equalsIgnoreCase(s)) {
-//			return new RegisterUserScreen();
-//		}
-//		if ("exit".equalsIgnoreCase(s)){
-//			System.out.println("Have a nice day! Goodbye");
-//		    System.exit(1);
-//		}
-//		if ("login".equalsIgnoreCase(s)){
-//			//proceed with the program.
-//			System.out.println();
-//		}
-//		else {
-//			System.out.println("Incorrect command. Try again.");
-//			return new LoginScreen();
-//		}
-//		
-//		System.out.println("Enter your username: ");
-//		String username = scan.nextLine();
-//		System.out.println("Enter Password: ");
-//		String password = scan.nextLine();
-//
-//		User currentUser = ud.findByUsernameAndPassword(username, password);
-//		if (currentUser != null) {
-//			return new HomeScreen();
-//		}
-//
-//		System.out.println("unable to login");
-//		return this;
 		private PyramidDao bd = new PyramidSerializer();
 		private Scanner scan = new Scanner(System.in);
 		private List<Transactions> transactions;
@@ -77,11 +28,29 @@ public class LoginScreen implements Screen {
 		bd.addUser(admin);
 
 		users = bd.getUsers();
-		System.out.println("Welcome to pyramid banking. These are the following commands: ");
-		System.out.print("login");
+		System.out.println("========================================================================");
+		System.out.println("|	         Welcome to pyramid banking. 				|");
+		System.out.println("| 	      These are the following commands: 			|");
+		System.out.print("|		login");
 		System.out.print("        Register");
-		System.out.print("        exit");
+		System.out.print("        exit			|");
 		System.out.println();
+		System.out.println("========================================================================");
+		int r = 7;
+		int spaces = r*2 - 2;
+		for(int i = 0; i < r; i++){
+			
+			for(int j = 0; j < spaces; j++){
+				System.out.print(" ");
+			}
+			
+			spaces = spaces - 1;
+			for (int j = 0; j <= i; j++){
+				System.out.print("  $ ");
+			}
+			System.out.println();
+		}
+		
 		String choice = scan.nextLine().toLowerCase();
 		switch (choice) {
 		case "login":
@@ -93,7 +62,7 @@ public class LoginScreen implements Screen {
 			if (checkUserCridentials(users, username, password, bd)) {
 				user = HomeScreen.getCurrentUser(bd);
 				// IF the bank account is 0 then the admin has logged in go the the admin page
-				if (user.getBankAccount().getAccountNumber() == 0)
+				if (user.getPyramidAccount().getAccountNumber() == 0)
 					return new AdminScreen();
 				else
 					return new HomeScreen();
