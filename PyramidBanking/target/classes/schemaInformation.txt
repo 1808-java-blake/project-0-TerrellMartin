@@ -1,0 +1,9 @@
+SET SCHEMA 'pyramid_banking';
+
+CREATE TABLE pyramid_users(
+	username VARCHAR(30),
+	password VARCHAR(30),
+	firstname VARCHAR(20),
+	lastname VARCHAR(20));
+	
+ALTER TABLE pyramid_users ADD uid SERIAL PRIMARY KEY;

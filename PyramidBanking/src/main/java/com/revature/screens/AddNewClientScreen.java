@@ -9,11 +9,13 @@ import com.revature.account.Account;
 import com.revature.account.Transactions;
 import com.revature.daos.PyramidDao;
 import com.revature.daos.PyramidSerializer;
+import com.revature.daos.UserDao;
 import com.revature.beans.User;
 
 public class AddNewClientScreen implements Screen {
 
 	private PyramidDao bd = new PyramidSerializer();
+	private UserDao ud = UserDao.currentUserDao;
 	private Scanner scan = new Scanner(System.in);
 	private User user;
 	private String username;
@@ -41,7 +43,7 @@ public class AddNewClientScreen implements Screen {
 
 		user = new User(username, password, firstName, lastName,
 				new Account(bd.getUsers().size() + 1, intialAmount, transaction), true);
-
+		ud.createUser(user);
 		if (bd.addUser(user)) {
 			System.out.println("\nWelcome " + user.getUsername() + ".");
 			return new HomeScreen();

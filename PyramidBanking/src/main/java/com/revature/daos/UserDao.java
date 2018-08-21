@@ -3,7 +3,8 @@ package com.revature.daos;
 import com.revature.beans.User;
 
 public interface UserDao {
-	public static final UserDao currentUserDao = new UserSerializer();
+	//public static final UserDao currentUserDao = new UserSerializer();
+	public static final UserDao currentUserDao = new DatabaseDao();
 	
 	void createUser(User u);
 	User findByUsernameAndPassword(String username, String password);

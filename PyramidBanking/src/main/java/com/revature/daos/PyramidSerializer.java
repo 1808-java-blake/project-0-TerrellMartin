@@ -30,12 +30,12 @@ public class PyramidSerializer implements PyramidDao {
 		amount = scan.nextDouble();
 
 		for (User u : users) {
-			if (u.getBankAccount().getAccountNumber() == user.getBankAccount().getAccountNumber()) {
-				if (u.getBankAccount().getAccountBalance() >= amount) {
+			if (u.getPyramidAccount().getAccountNumber() == user.getPyramidAccount().getAccountNumber()) {
+				if (u.getPyramidAccount().getAccountBalance() >= amount) {
 					transaction = getTransactions(user);
 					transaction.add(new Transactions("withdrawl", amount, LocalDateTime.now()));
-					u.getBankAccount().setAccountBalance(u.getBankAccount().getAccountBalance() - amount);
-					u.getBankAccount().setTransactions(transaction);
+					u.getPyramidAccount().setAccountBalance(u.getPyramidAccount().getAccountBalance() - amount);
+					u.getPyramidAccount().setTransactions(transaction);
 				} else {
 					System.out.println("You do not have enough funds for the requested amount.");
 					return false;
@@ -52,11 +52,11 @@ public class PyramidSerializer implements PyramidDao {
 		amount = scan.nextDouble();
 
 		for (User u : users) {
-			if (u.getBankAccount().getAccountNumber() == user.getBankAccount().getAccountNumber()) {
+			if (u.getPyramidAccount().getAccountNumber() == user.getPyramidAccount().getAccountNumber()) {
 				transaction = getTransactions(user);
 				transaction.add(new Transactions("deposit", amount, LocalDateTime.now()));
-				u.getBankAccount().setAccountBalance(u.getBankAccount().getAccountBalance() + amount);
-				u.getBankAccount().setTransactions(transaction);
+				u.getPyramidAccount().setAccountBalance(u.getPyramidAccount().getAccountBalance() + amount);
+				u.getPyramidAccount().setTransactions(transaction);
 			}
 		}
 		
@@ -67,8 +67,8 @@ public class PyramidSerializer implements PyramidDao {
 	public void viewBalance(User user) {
 		// TODO Auto-generated method stub
 		for (User u : users) {
-			if (u.getBankAccount().getAccountNumber() == user.getBankAccount().getAccountNumber()) {
-				System.out.printf("\nAccount balance: $%,.2f\n", u.getBankAccount().getAccountBalance());
+			if (u.getPyramidAccount().getAccountNumber() == user.getPyramidAccount().getAccountNumber()) {
+				System.out.printf("\nAccount balance: $%,.2f\n", u.getPyramidAccount().getAccountBalance());
 			}
 		}
 	}
@@ -77,8 +77,8 @@ public class PyramidSerializer implements PyramidDao {
 	public List<Transactions> getTransactions(User user) {
 		// TODO Auto-generated method stub
 		for (User u : users) {
-			if (u.getBankAccount().getAccountNumber() == user.getBankAccount().getAccountNumber()) {
-				transactions = u.getBankAccount().getTransactions();
+			if (u.getPyramidAccount().getAccountNumber() == user.getPyramidAccount().getAccountNumber()) {
+				transactions = u.getPyramidAccount().getTransactions();
 			}
 		}
 
@@ -89,7 +89,7 @@ public class PyramidSerializer implements PyramidDao {
 	@Override
 	public boolean userLoggedIn(User user) {
 		for (User u : users) {
-			if (u.getBankAccount().getAccountNumber() == user.getBankAccount().getAccountNumber())
+			if (u.getPyramidAccount().getAccountNumber() == user.getPyramidAccount().getAccountNumber())
 				u.setLoggedIn(true);
 		}
 		
@@ -105,7 +105,7 @@ public class PyramidSerializer implements PyramidDao {
 		}
 
 		for (User u : users) {
-			if (u.getBankAccount().getAccountNumber() == user.getBankAccount().getAccountNumber()) {
+			if (u.getPyramidAccount().getAccountNumber() == user.getPyramidAccount().getAccountNumber()) {
 				return false;
 			} else if (u.getUsername().equals(user.getUsername())) {
 				System.out.println("This username is taken, please try again.");
@@ -142,7 +142,7 @@ public class PyramidSerializer implements PyramidDao {
 	public boolean userLogout(User user) {
 		// TODO Auto-generated method stub
 		for (User u : users) {
-			if (u.getBankAccount().getAccountNumber() == user.getBankAccount().getAccountNumber())
+			if (u.getPyramidAccount().getAccountNumber() == user.getPyramidAccount().getAccountNumber())
 				u.setLoggedIn(false);
 		}
 		
@@ -155,8 +155,8 @@ public class PyramidSerializer implements PyramidDao {
 		// TODO Auto-generated method stub
 		if (users.size() > 1) {
 			for (User u : users) {
-				if (u.getBankAccount().getAccountNumber() != 0) {
-					transactions = u.getBankAccount().getTransactions();
+				if (u.getPyramidAccount().getAccountNumber() != 0) {
+					transactions = u.getPyramidAccount().getTransactions();
 					System.out.printf("User: %s", u.getUsername());
 					for (Transactions transaction : transactions) {
 						System.out.printf(

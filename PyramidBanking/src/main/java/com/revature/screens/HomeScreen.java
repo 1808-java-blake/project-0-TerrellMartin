@@ -18,11 +18,13 @@ public class HomeScreen implements Screen {
 	public Screen start() {
 
 		User user = getCurrentUser(bd);
-		System.out.println("\nPress 'withdraw' for withdrawl.");
-		System.out.println("Press 'deposit' for deposit.");
-		System.out.println("Press 'view' to view balance.");
-		System.out.println("Type 'transactions' to view transactions.");
-		System.out.println("Type 'logout' to Log out");
+		System.out.println("========================================================");
+		System.out.println("|	Type 'withdraw' for withdrawl.			|");
+		System.out.println("|	Type 'deposit' for deposit.			|");
+		System.out.println("|	Type 'view' to view balance.			|");
+		System.out.println("|	Type 'transactions' to view transactions.	|");
+		System.out.println("|	Type 'logout' to Log out			|");
+		System.out.println("========================================================");
 
 		String choice = scan.nextLine();
 
